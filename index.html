@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff7f50, #ff6347);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Added to stack content vertically */
+            height: 100vh;
+            color: white; /* Default font color */
+            transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition for both background and font color */
+        }
+
+        .game-container {
+            text-align: center;
+            margin-bottom: 20px; /* Add space for footer */
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .option {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .option img {
+            width: 200px;
+            height: 200px;
+            transition: transform 0.3s ease;
+        }
+
+        .option:hover {
+            transform: scale(1.1);
+        }
+
+        .option img:hover {
+            transform: scale(1.1);
+        }
+
+        #result {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+
+        #choices {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 20px;
+        }
+
+        #user-choice, #computer-choice {
+            text-align: center;
+        }
+
+        #user-choice img, #computer-choice img {
+            width: 150px;
+            height: 150px;
+        }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.2em;
+            background-color: #333;
+            color: white;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        footer img {
+            width: 30px; /* Small size for the footer image */
+            height: 30px;
+            border-radius: 50%; /* This makes the image round */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Rock Paper Scissors</h1>
+        <div class="options">
+            <div class="option" id="rock">
+                <img src="https://zillur-rgb.github.io/rock-paper-scissor/images/rock.png" alt="Rock">
+                <p>Rock</p>
+            </div>
+            <div class="option" id="paper">
+                <img src="https://zillur-rgb.github.io/rock-paper-scissor/images/paper.png" alt="Paper">
+                <p>Paper</p>
+            </div>
+            <div class="option" id="scissors">
+                <img src="https://zillur-rgb.github.io/rock-paper-scissor/images/scissor.png" alt="Scissors">
+                <p>Scissors</p>
+            </div>
+        </div>
+        <div id="result">
+            <p>Choose an option to start</p>
+        </div>
+
+        <!-- Show user and computer's choice images side by side -->
+        <div id="choices" style="display: none;">
+            <div id="user-choice">
+                <p>Your choice:</p>
+                <img src="" alt="Your choice" id="user-img">
+            </div>
+            <div id="computer-choice">
+                <p>Computer's choice:</p>
+                <img src="" alt="Computer's choice" id="computer-img">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <img src=https://media-hyd1-1.cdn.whatsapp.net/v/t61.24694-24/473398681_1189263822636327_8699992123185068935_n.jpg?ccb=11-4&oh=01_Q5AaIS9KQMArzBL_JI5rpJ4E_j6N6bXk1P-vBrlqB5CY5MTH&oe=67EE374A&_nc_sid=5e03e0&_nc_cat=104 alt="Logo"> <!-- Replace this with your desired logo image URL -->
+        <p>&copy; 2025 Sumit Ghodke. Designed by sumit ghodke omerga.</p>
+    </footer>
+
+    <script>
+        const rock = document.getElementById("rock");
+        const paper = document.getElementById("paper");
+        const scissors = document.getElementById("scissors");
+        const resultDiv = document.getElementById("result");
+        const choicesDiv = document.getElementById("choices");
+        const userImg = document.getElementById("user-img");
+        const computerImg = document.getElementById("computer-img");
+        const body = document.body;
+
+        const options = ["rock", "paper", "scissors"];
+
+        function getComputerChoice() {
+            const randomChoice = Math.floor(Math.random() * 3);
+            return options[randomChoice];
+        }
+
+        function getChoiceImage(choice) {
+            if (choice === "rock") {
+                return "https://zillur-rgb.github.io/rock-paper-scissor/images/rock.png";
+            } else if (choice === "paper") {
+                return "https://zillur-rgb.github.io/rock-paper-scissor/images/paper.png";
+            } else {
+                return "https://zillur-rgb.github.io/rock-paper-scissor/images/scissor.png";
+            }
+        }
+
+        function changeBackground(result) {
+            if (result === "You win!") {
+                body.style.backgroundColor = "#ADD8E6"; // Light Blue background for win
+                body.style.color = "#FFFFFF"; // White text for win
+            } else if (result === "You lose!") {
+                body.style.backgroundColor = "#800080"; // Dark Purple background for loss
+                body.style.color = "#FFFFFF"; // White text for loss
+            } else {
+                body.style.backgroundColor = "#FFFF00"; // Yellow background for tie
+                body.style.color = "#000000"; // Black text for tie
+            }
+        }
+
+        function playGame(playerChoice) {
+            // Reset the result display initially
+            choicesDiv.style.display = "none"; 
+            resultDiv.innerHTML = "<p>Choosing...</p>"; 
+            
+            // Simulate a short delay for suspense
+            setTimeout(() => {
+                const computerChoice = getComputerChoice();
+                const computerImage = getChoiceImage(computerChoice);
+                const userImage = getChoiceImage(playerChoice);
+                
+                let result = '';
+                
+                if (playerChoice === computerChoice) {
+                    result = "It's a tie!";
+                } else if (
+                    (playerChoice === "rock" && computerChoice === "scissors") ||
+                    (playerChoice === "paper" && computerChoice === "rock") ||
+                    (playerChoice === "scissors" && computerChoice === "paper")
+                ) {
+                    result = "You win!";
+                } else {
+                    result = "You lose!";
+                }
+                
+                // Display the result
+                resultDiv.innerHTML = `
+                    <p>Your choice: ${playerChoice}</p>
+                    <p>${result}</p>
+                `;
+                
+                // Update background and font color
+                changeBackground(result);
+                
+                // Show the user and computer's choices
+                choicesDiv.style.display = "flex";
+                userImg.src = userImage;
+                computerImg.src = computerImage;
+            }, 1000);  // Delay for 1 second before showing the computer's choice
+        }
+
+        rock.addEventListener("click", () => playGame("rock"));
+        paper.addEventListener("click", () => playGame("paper"));
+        scissors.addEventListener("click", () => playGame("scissors"));
+    </script>
+</body>
+</html>
