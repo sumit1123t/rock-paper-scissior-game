@@ -3,29 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors</title>
+    <title><b>Rock Paper Scissors</b></title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
+            background-image: url('https://wallpapers.com/images/high/best-gaming-background-5vnqlkgt42v5hfyi.webp'); /* Replace with your image URL */
+            background-size: cover; /* Makes the image cover the entire screen */
+            background-position: center; /* Centers the image */
+            height: 100vh; /* Makes sure the body takes up the full height of the viewport */
+            margin: 0; /* Removes default margin */
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ff7f50, #ff6347);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            color: white;
-            transition: background-color 0.5s ease, color 0.5s ease;
+            color: white; /* Text color */
         }
 
         .game-container {
             text-align: center;
             margin-bottom: 20px;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent background for readability */
+            padding: 20px;
+            border-radius: 10px;
         }
 
         h1 {
@@ -38,7 +34,7 @@
             justify-content: center;
             gap: 20px;
             margin: 20px 0;
-            flex-wrap: wrap; /* Allows wrapping on smaller screens */
+            flex-wrap: wrap;
         }
 
         .option {
@@ -96,8 +92,8 @@
         }
 
         footer img {
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
         }
 
@@ -127,8 +123,8 @@
             }
 
             footer img {
-                width: 25px;
-                height: 25px;
+                width: 30px;
+                height: 30px;
             }
         }
 
@@ -139,7 +135,7 @@
             }
 
             .options {
-                flex-direction: column; /* Stack options vertically on small screens */
+                flex-direction: column;
                 gap: 15px;
             }
 
@@ -154,15 +150,14 @@
             }
 
             footer {
-                font-size: 0.8em;
+                font-size: 0.9em;
             }
 
             footer img {
-                width: 20px;
-                height: 20px;
+                width: 30px;
+                height: 30px;
             }
         }
-
     </style>
 </head>
 <body>
@@ -199,8 +194,8 @@
     </div>
 
     <footer>
-        <img src=https://media-hyd1-1.cdn.whatsapp.net/v/t61.24694-24/473398681_1189263822636327_8699992123185068935_n.jpg?ccb=11-4&oh=01_Q5AaIRRHhJkc6ZuduPEhdvs-Ny3UIgGIQqh5i4b_y7a3Y4Ys&oe=67EE6F8A&_nc_sid=5e03e0&_nc_cat=104 alt="Logo">
-        <p>&copy; 2025 Sumit Ghodke. desinged by sumit ghodke the devloper.</p>
+        <img src="https://media-hyd1-1.cdn.whatsapp.net/v/t61.24694-24/473398681_1189263822636327_8699992123185068935_n.jpg?ccb=11-4&oh=01_Q5AaIRRHhJkc6ZuduPEhdvs-Ny3UIgGIQqh5i4b_y7a3Y4Ys&oe=67EE6F8A&_nc_sid=5e03e0&_nc_cat=104" alt="Logo">
+        <p>&copy; 2025 Sumit Ghodke. Designed by Sumit Ghodke, the developer.</p>
     </footer>
 
     <script>
@@ -268,7 +263,7 @@
                 
                 resultDiv.innerHTML = `
                     <p>Your choice: ${playerChoice}</p>
-                    <p>${result}</p>
+                    <p><b><u>${result}</b></u></p>
                 `;
                 
                 changeBackground(result);
@@ -283,5 +278,34 @@
         paper.addEventListener("click", () => playGame("paper"));
         scissors.addEventListener("click", () => playGame("scissors"));
     </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Audio in Background</title>
+    <style>
+        /* Basic responsive design to ensure the audio player fits the screen */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Hide the audio element from view but keep it functional */
+        audio {
+            display: none; /* Hides the audio player */
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Audio Player (Hidden) -->
+    <audio autoplay loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 </body>
 </html>
